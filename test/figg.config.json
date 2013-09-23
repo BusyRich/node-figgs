@@ -1,0 +1,33 @@
+{
+  "development": {
+    "port": "<var.PORT 3344>",
+    "nested": {
+       "value": "<figg.this.is.a.nested.object default value>"
+    },
+    "unchanged": "value",
+    "stagingoverride": "value",
+    "productionoverride": "value",
+    "this": {
+      "is": {
+        "a": {
+          "nested": {
+            "object": "I am really nested"
+          }
+        }
+      }
+    }
+  },
+  "staging": {
+    "stagingoverride": "staging value",
+    "stagingvalue": "value"
+  },
+  "prod": {
+    "productionoverride": "production value",
+    "productionvalue": "value"
+  },
+  "options": {
+    "environments": {
+      "production": "prod"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "figgs",
+  "version": "0.0.1",
+  "description": "A delicious way to manage configurations.",
+  "main": "figg.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "configuration",
+    "conf",
+    "config",
+    "manage",
+    "management"
+  ],
+  "author": "Richard Key",
+  "license": "MIT",
+  "dependencies": {
+    "xtend": "~2.1.1",
+    "extend": "~1.2.1"
+  }
+}

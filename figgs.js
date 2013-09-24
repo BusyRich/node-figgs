@@ -1,6 +1,7 @@
 var fs = require('fs'),
     path = require('path'),
-    util = require('./util'),
+    util = require('./lib/util'),
+    placeholder = require('./lib/placeholder'),
     extend = require('extend');
 
 var defaults = {
@@ -19,12 +20,12 @@ var defaults = {
 var errors = {
   notFound: 'Your figg file "%s" was not found.',
   notSet: 'No figg was found for the "%s" environment.',
-  notDefined: 'Environment "%s" has no defined figg.'
+  notDefined: 'Environment "%s" has no defined figg.',
+  placeholderError: 'There is an issue with your placeholder "%s"'
 };
 
 var tests = {
   hasExt: /\.json$/,
-  isPlaceholder: /^<([A-Za-z\.]+) (.+?)>$/
 };
 
 /*
@@ -87,31 +88,20 @@ var buildFiggs = function(envs, hierarchy, figgs) {
 };
 
 var parsePlaceholders = function(figg, root) {
+  var tmp = '';
+
   for(var k in figg) {
     if(typeof figg[k] === 'object') {
       parsePlaceholders(figg[k], figg);
     } else if(typeof figg[k] === 'string') {
-      if(tests.isPlaceholder.test(figg[k])) {
-        var matches = figg[k].match(tests.isPlaceholder);
+      if(placeholder.isPlaceholder(figg[k])) {
+        tmp = placeholder.parse(root, figg[k]);
 
-        //Environment variable placeholder
-        if(matches[1].indexOf('var') === 0) {
-          figg[k] = process.env[matches[1].replace(/^var\./, '')] || matches[2];
-        } else if(matches[1].indexOf('figg') === 0) {
-          var levels = matches[1].replace(/^figg\./, '').split('.'),
-              current = root;
-
-            for(var l = 0; l < levels.length; l++) {
-              if(!current.hasOwnProperty(levels[l])) {
-                current = null;
-                break;
-              }
-
-              current = current[levels[l]];
-            }
-
-            figg[k] = current || matches[2];
+        if(tmp === null) {
+          throw new Error(util.format(errors.placeholderError, figg[k]));
         }
+
+        figg[k] = tmp;
       }
     }
   }

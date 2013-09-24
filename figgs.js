@@ -1,8 +1,7 @@
 var fs = require('fs'),
     path = require('path'),
     util = require('./lib/util'),
-    placeholder = require('./lib/placeholder'),
-    extend = require('extend');
+    placeholder = require('./lib/placeholder');
 
 var defaults = {
   environments: {
@@ -80,8 +79,8 @@ var buildFiggs = function(envs, hierarchy, figgs) {
       continue;
     }
 
-    figgs[envs[hierarchy[e]]] = extend(true,
-      util.copy(figgs[envs[hierarchy[e - 1]]]),
+    figgs[envs[hierarchy[e]]] = util.extend(
+      figgs[envs[hierarchy[e - 1]]],
       figgs[envs[hierarchy[e]]]
     );
   }
@@ -123,7 +122,7 @@ figg.load = function(file, options) {
   }
 
   c = getFile(f);
-  o = extend(true, util.copy(defaults), c.options || {});
+  o = util.extend(defaults, c.options || {});
 
   checkFiggs(o.environments, c);
   buildFiggs(o.environments, o.hierarchy, c);

@@ -125,11 +125,6 @@ figg.load = function(file, options) {
   c = getFile(f);
   o = extend(true, util.copy(defaults), c.options || {});
 
-  //extend will convert arrays into "array like objects"
-  //they need to be converted back into arrays
-  o.hierarchy = util.toArray(o.hierarchy);
-
-
   checkFiggs(o.environments, c);
   buildFiggs(o.environments, o.hierarchy, c);
 

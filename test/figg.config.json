@@ -2,7 +2,7 @@
   "development": {
     "port": "<var.PORT 3344>",
     "nested": {
-       "value": "<figg.this.is.a.nested.object default value>"
+       "value": "<figg.this.is.a.nested.object>"
     },
     "unchanged": "value",
     "stagingoverride": "value",

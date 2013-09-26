@@ -24,7 +24,7 @@ var errors = {
 };
 
 var tests = {
-  hasExt: /\.json$/,
+  hasExt: /\.json$/
 };
 
 /*

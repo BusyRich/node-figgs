@@ -13,7 +13,8 @@ var defaults = {
     'development',
     'staging',
     'production'
-  ]
+  ],
+  default_index: 0
 };
 
 var errors = {
@@ -127,7 +128,7 @@ figg.load = function(file, options) {
   checkFiggs(o.environments, c);
   buildFiggs(o.environments, o.hierarchy, c);
 
-  e = getEnv(o.environments, o.hierarchy[0]);
+  e = getEnv(o.environments, o.hierarchy[o.default_index]);
 
   c = c[e];
 

@@ -1,3 +1,3 @@
-process.config = require(__dirname + '/../figgs.js').load('figg.config');
+var figg = require(__dirname + '/../figgs.js').load('figg.config');
 
-console.log(process.config);
+console.log(figg);

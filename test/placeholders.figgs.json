@@ -1,0 +1,17 @@
+{
+  "development": {
+    "envar": "<var.test default>",
+    "nested": {
+       "value": "<figg.this.is.really.nested>"
+    },
+    "this": {
+      "is": {
+        "really": {
+          "nested": "I am really nested."
+        }
+      }
+    }
+  },
+  "staging": {},
+  "production": {}
+}

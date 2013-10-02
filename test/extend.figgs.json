@@ -1,5 +1,5 @@
 {
-  "development": {
+  "dev": {
     "nested": {
        "value": "nested"
     },
@@ -16,5 +16,10 @@
     "productionoverride": "production value",
     "productionvalue": "value",
     "delete": null
+  },
+  "options": {
+    "environments": {
+      "development": "dev"
+    }
   }
 }

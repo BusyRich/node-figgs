@@ -1,0 +1,32 @@
+{
+  "space": {
+    "planets": 8
+  },
+  "production": {
+    "unchanged": "value",
+    "stagingoverride": "value",
+    "productionoverride": "value",
+    "delete": "me"
+  },
+  "development": {
+    "stagingoverride": "staging value",
+    "stagingvalue": "value"
+  },
+  "staging": {
+    "productionoverride": "production value",
+    "productionvalue": "value",
+    "delete": null
+  },
+  "options": {
+    "environments": {
+      "space": "space"
+    },
+    "hierarchy": [
+      "space",
+      "production",
+      "development",
+      "staging"
+    ],
+    "default_index": 4
+  }
+}

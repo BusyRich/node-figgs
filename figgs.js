@@ -7,4 +7,8 @@ figgs.load = function(file, options) {
   return f.figg;
 };
 
+figgs.factory = function(file, options) {
+  return new Figg(file, options).load();
+};
+
 module.exports = figgs;

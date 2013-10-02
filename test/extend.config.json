@@ -1,36 +1,20 @@
 {
   "development": {
-    "port": "<var.PORT 3344>",
     "nested": {
-       "value": "<figg.this.is.a.nested.object>"
+       "value": "nested"
     },
     "unchanged": "value",
     "stagingoverride": "value",
     "productionoverride": "value",
-    "this": {
-      "is": {
-        "a": {
-          "nested": {
-            "object": "I am really nested"
-          }
-        }
-      }
-    },
     "delete": "me"
   },
   "staging": {
     "stagingoverride": "staging value",
     "stagingvalue": "value"
   },
-  "prod": {
+  "production": {
     "productionoverride": "production value",
     "productionvalue": "value",
     "delete": null
-  },
-  "options": {
-    "environments": {
-      "production": "prod"
-    },
-    "default_index": 2
   }
 }

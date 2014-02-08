@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --reporter spec"
   },
-  "repository": "",
+  "repository": "git://github.com/BusyRich/node-figgs.git",
   "keywords": [
     "configuration",
     "conf",
@@ -15,7 +15,12 @@
     "management"
   ],
   "author": "Richard Key",
-  "license": "MIT",
+  "licenses": [
+    {
+      "type": "GPL-2.0",
+      "url": "http://github.com/BusyRich/node-figgs/raw/master/LICENSE"
+    }
+  ],
   "devDependencies": {
     "expect.js": "~0.2.0"
   }

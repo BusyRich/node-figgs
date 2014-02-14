@@ -179,12 +179,12 @@ Since a JSON file is just an object, and not free-flowing javascript, there are 
 This is where placeholders come in. They are strings that reference a value for dynamic lookup later. All you have to do is set a property to a placeholder string and it will be interpreted and filled when the configuration is loaded.
 
 ### var | &lt;var.[variable] [default]&gt;
-Gets the value of an environment variable.
+Gets the value of an environment variable. Environment variable names are case sensitive. Ex: `var.port`, `var.Port`, and `var.PORT` are all different variables.
 
 ```javascript
     {
       "development": {
-        "port": "<var.port 9999>",
+        "port": "<var.PORT 9999>",
         "conn_str": "localhost:3233/db"
       }
     }

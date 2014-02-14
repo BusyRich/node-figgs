@@ -1,6 +1,6 @@
 {
   "development": {
-    "envar": "<var.test default>",
+    "envar": "<var.TEST default>",
     "nested": {
        "value": "<figg.this.is.really.nested>"
     },

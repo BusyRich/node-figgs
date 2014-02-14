@@ -3,6 +3,7 @@ var figgs = require('./../figgs.js'),
 
 describe('Figgs', function() {
   process.env.TEST = 'test envar';
+  process.env.floatValue = '98.656';
 
   var envIndex = 2,
       xFigg = figgs.factory(__dirname + '/extend.figgs', {default_index:envIndex}),
@@ -69,6 +70,13 @@ describe('Figgs', function() {
         pFigg.load();
 
         expect(pFigg.figg.envar).to.be('default');
+      });
+
+      it('should convert variable placeholders to numbers if possible', function() {
+        pFigg.load();
+
+        expect(pFigg.figg.int).to.equal(99999);
+        expect(pFigg.figg.float).to.equal(98.656);
       });
     });
 

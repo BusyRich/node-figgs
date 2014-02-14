@@ -1,6 +1,8 @@
 {
   "development": {
     "envar": "<var.TEST default>",
+    "int": "<var.nothing 99999>",
+    "float": "<var.floatValue 99.999>",
     "nested": {
        "value": "<figg.this.is.really.nested>"
     },

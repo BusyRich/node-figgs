@@ -2,7 +2,7 @@ var figgs = require('./../figgs.js'),
     expect = require('expect.js');
 
 describe('Figgs', function() {
-  process.env.TEST = 'test envar';
+  process.env.TEST_VAR = 'test envar';
   process.env.floatValue = '98.656';
   process.env.Bool = 'true';
 
@@ -67,7 +67,7 @@ describe('Figgs', function() {
       });
 
       it('should load a default value when the environment variable does not exist', function() {
-        delete process.env.TEST;
+        delete process.env.TEST_VAR;
         pFigg.load();
 
         expect(pFigg.figg.envar).to.be('default');

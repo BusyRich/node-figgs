@@ -1,6 +1,6 @@
 {
   "development": {
-    "envar": "<var.TEST default>",
+    "envar": "<var.TEST_VAR default>",
     "int": "<var.nothing 99999>",
     "float": "<var.floatValue 99.999>",
     "Boolean": "<var.Bool fAlSE>",

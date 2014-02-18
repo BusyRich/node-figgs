@@ -181,7 +181,7 @@ This is where placeholders come in. They are strings that reference a value for 
 ### var | &lt;var.[variable] [default]&gt;
 Gets the value of an environment variable. Environment variable names are case sensitive. Ex: `var.port`, `var.Port`, and `var.PORT` are all different variables.
 
-Figgs will also auto-convert numbers for convenience. If a value is all digits, it will be converted to an integer. If a value is digits with a single period (decimal point) inbetween somewhere, it will be converted to a float.
+Figgs will also auto-convert numbers and booleans for convenience. If a value is all digits, it will be converted to an integer. If a value is digits with a single period (decimal point) inbetween somewhere, it will be converted to a float. If a value is the string "true" or "false" (case insensitive) it will be converted to a boolean.
 
 ```javascript
     {

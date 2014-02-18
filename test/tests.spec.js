@@ -4,6 +4,7 @@ var figgs = require('./../figgs.js'),
 describe('Figgs', function() {
   process.env.TEST = 'test envar';
   process.env.floatValue = '98.656';
+  process.env.Bool = 'true';
 
   var envIndex = 2,
       xFigg = figgs.factory(__dirname + '/extend.figgs', {default_index:envIndex}),
@@ -77,6 +78,17 @@ describe('Figgs', function() {
 
         expect(pFigg.figg.int).to.equal(99999);
         expect(pFigg.figg.float).to.equal(98.656);
+      });
+
+      it('should convert variable placeholders to booleans if possible', function() {
+        pFigg.load();
+
+        expect(pFigg.figg.Boolean).to.equal(true);
+
+        delete process.env.Bool;
+        pFigg.load();
+
+        expect(pFigg.figg.Boolean).to.equal(false);
       });
     });
 

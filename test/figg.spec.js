@@ -2,14 +2,55 @@ var figgs = require('./../figgs.js'),
     expect = require('expect.js');
 
 describe('Figgs', function() {
-  process.env.TEST_VAR = 'test envar';
-  process.env.floatValue = '98.656';
-  process.env.Bool = 'true';
-
   var envIndex = 2,
-      xFigg = figgs.factory(__dirname + '/extend.figgs', {default_index:envIndex}),
-      hFigg = figgs.factory(__dirname + '/hierarchy.figgs')
-      pFigg = figgs.factory(__dirname + '/placeholders.figgs');
+      xFigg = figgs.factory(__dirname + '/extend', {default_index:envIndex}),
+      hFigg = figgs.factory(__dirname + '/hierarchy');
+
+  it('should load figg based on NODE_ENV environment variable', function() {
+    process.env.NODE_ENV = 'production';
+
+    xFigg.load(__dirname + '/extend');
+
+    expect(xFigg.figg.productionoverride).to.be('production value');
+
+    //reset the hFigg
+    delete process.env.NODE_ENV;
+    xFigg.load(__dirname + '/extend', {default_index:envIndex});
+  });
+
+  it('should throw an error if environment is not found', function() {
+    process.env.NODE_ENV = 'notanenv';
+
+    expect(function() { figgs.load(__dirname + '/hierarchy'); }).to.throwException();
+    
+    delete process.env.NODE_ENV;
+  });
+
+  it('should allow quick loading of the figg', function() {
+    var figg = figgs.load(__dirname + '/extend');
+    expect(figg.delete).to.be('me');
+  });
+
+  it('should throw an error when the figg does not exist', function() {
+    expect(function() { figgs.load('noafile'); }).to.throwException();
+    expect(function() { figgs.load('noafile.json'); }).to.throwException();
+  });
+
+  it('should throw an error when an environment cannot be found', function() {
+    expect(function() { figgs.load(__dirname + '/figg.nodevelopment'); }).to.throwException();
+  });
+
+  it('should load config.json file by default', function() {
+    //changes the CWD so the default file can load
+    process.chdir('test');
+
+    var fault = figgs.load();
+
+    expect(fault.is).to.be('default file');
+
+    //change the CWD back
+    process.chdir('../');
+  });
 
   it('should allow options to be passed through the load function', function() {
     expect(xFigg.options.default_index).to.be(envIndex);
@@ -57,45 +98,6 @@ describe('Figgs', function() {
       expect(hFigg.full.development.productionoverride).to.be('value');
       expect(hFigg.full.staging.productionoverride).to.be('production value');
       expect(hFigg.full.staging.planets).to.be(8);
-    });
-  });
-
-  describe('Placeholders', function() {
-    describe('environment variable', function() {
-      it('should load an environment varialbe', function() {
-        expect(pFigg.figg.envar).to.be('test envar');
-      });
-
-      it('should load a default value when the environment variable does not exist', function() {
-        delete process.env.TEST_VAR;
-        pFigg.load();
-
-        expect(pFigg.figg.envar).to.be('default');
-      });
-
-      it('should convert variable placeholders to numbers if possible', function() {
-        pFigg.load();
-
-        expect(pFigg.figg.int).to.equal(99999);
-        expect(pFigg.figg.float).to.equal(98.656);
-      });
-
-      it('should convert variable placeholders to booleans if possible', function() {
-        pFigg.load();
-
-        expect(pFigg.figg.Boolean).to.equal(true);
-
-        delete process.env.Bool;
-        pFigg.load();
-
-        expect(pFigg.figg.Boolean).to.equal(false);
-      });
-    });
-
-    describe('figg reference', function() {
-      it('should reference a value in another part of the figg', function() {
-        expect(pFigg.figg.nested.value).to.be('I am really nested.');
-      });
     });
   });
 });

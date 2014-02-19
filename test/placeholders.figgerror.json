@@ -1,0 +1,7 @@
+{
+  "development": {
+    "throwserror": "<figg.does.not.exist>"
+  },
+  "staging": {},
+  "production": {}
+}

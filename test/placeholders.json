@@ -3,6 +3,7 @@
     "envar": "<var.TEST_VAR default>",
     "int": "<var.nothing 99999>",
     "float": "<var.floatValue 99.999>",
+    "dashVar": "<var.DASH-VALUE it has a dash>",
     "Boolean": "<var.Bool fAlSE>",
     "nested": {
        "value": "<figg.this.is.really.nested>"

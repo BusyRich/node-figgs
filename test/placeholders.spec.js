@@ -27,6 +27,7 @@ describe('Placeholders', function() {
         figg.load();
 
         expect(figg.figg.envar).to.be('default');
+        expect(figg.figg.dashVar).to.be('it has a dash');
       });
 
       it('should convert variable placeholders to numbers if possible', function() {
